@@ -1,0 +1,621 @@
+{
+    "commands": [
+        {
+            "name": "Quectel 5G SA Mode",
+            "command": "AT+QNWPREFCFG=\"nr5g_disable_mode\"",
+            "description": "Configure 5G SA/NSA mode",
+            "category": "5G",
+            "manufacturer": "Quectel",
+            "expectedResponse": "OK",
+            "responseDescription": "Set 5G SA/NSA mode preference"
+        },
+        {
+            "name": "Quectel 5G Cell Info",
+            "command": "AT+QENG=\"servingcell\"",
+            "description": "Get detailed 5G serving cell info",
+            "category": "5G",
+            "manufacturer": "Quectel",
+            "expectedResponse": "+QENG: <cell_info>",
+            "responseDescription": "Detailed 5G cell information"
+        },
+        {
+            "name": "Fibocom 5G Cell Info",
+            "command": "AT+GTCCINFO=\"NR5G\"",
+            "description": "Get 5G cell information",
+            "category": "5G",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+GTCCINFO: <5g_info>",
+            "responseDescription": "5G cell details including band, RSRP, SINR"
+        },
+        {
+            "name": "Fibocom Band Selection",
+            "command": "AT+GTBANDSEL",
+            "description": "Select specific bands",
+            "category": "Network",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+GTBANDSEL: <bands>",
+            "responseDescription": "Configure specific band selection"
+        },
+        {
+            "name": "SIMCom 5G Settings",
+            "command": "AT+CNSMOD=1",
+            "description": "Enable 5G mode reporting",
+            "category": "5G",
+            "manufacturer": "SIMCom",
+            "expectedResponse": "OK",
+            "responseDescription": "Enable 5G network mode reporting"
+        },
+        {
+            "name": "SIMCom Power Saving",
+            "command": "AT+CPSMS?",
+            "description": "Power saving mode settings",
+            "category": "Power",
+            "manufacturer": "SIMCom",
+            "expectedResponse": "+CPSMS: <mode>",
+            "responseDescription": "Current power saving mode configuration"
+        },
+        {
+            "name": "Telit 5G Configuration",
+            "command": "AT#5GCONF?",
+            "description": "5G configuration settings",
+            "category": "5G",
+            "manufacturer": "Telit",
+            "expectedResponse": "#5GCONF: <config>",
+            "responseDescription": "Current 5G configuration"
+        },
+        {
+            "name": "Telit Temperature",
+            "command": "AT#TEMPMON?",
+            "description": "Module temperature monitor",
+            "category": "Hardware",
+            "manufacturer": "Telit",
+            "expectedResponse": "#TEMPMON: <temp>",
+            "responseDescription": "Current module temperature"
+        },
+        {
+            "name": "Manufacturer ID",
+            "command": "AT+CGMI",
+            "description": "Request manufacturer identification",
+            "category": "General",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CGMI: <manufacturer>",
+            "responseDescription": "Returns the manufacturer identification"
+        },
+        {
+            "name": "Model ID",
+            "command": "AT+CGMM",
+            "description": "Request model identification",
+            "category": "General",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CGMM: <model>",
+            "responseDescription": "Returns the model identification"
+        },
+        {
+            "name": "Software Revision",
+            "command": "AT+CGMR",
+            "description": "Request software revision number",
+            "category": "General",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CGMR: <revision>",
+            "responseDescription": "Returns the software revision"
+        },
+        {
+            "name": "IMEI Query",
+            "command": "AT+CGSN",
+            "description": "Request International Mobile Equipment Identity (IMEI)",
+            "category": "General",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CGSN: <IMEI>",
+            "responseDescription": "Returns the IMEI number"
+        },
+        {
+            "name": "USIM Check",
+            "command": "AT+GTUSIM",
+            "description": "Check USIM card status",
+            "category": "General",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+GTUSIM: <status>",
+            "responseDescription": "Returns USIM card status"
+        },
+        {
+            "name": "Signal Strength",
+            "command": "AT+CSQ",
+            "description": "Get signal quality report",
+            "category": "Network",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CSQ: <rssi>,<ber>",
+            "responseDescription": "Returns signal strength and bit error rate"
+        },
+        {
+            "name": "Extended Signal Quality",
+            "command": "AT+CESQ",
+            "description": "Get extended signal quality report",
+            "category": "Network",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CESQ: <rxlev>,<ber>,<rscp>,<ecno>,<rsrq>,<rsrp>",
+            "responseDescription": "Detailed signal quality parameters"
+        },
+        {
+            "name": "Network Registration",
+            "command": "AT+CREG?",
+            "description": "Query network registration status",
+            "category": "Network",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CREG: <n>,<stat>[,<lac>,<ci>]",
+            "responseDescription": "Network registration status and location info"
+        },
+        {
+            "name": "5G Registration",
+            "command": "AT+C5GREG?",
+            "description": "Query 5G network registration status",
+            "category": "5G",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+C5GREG: <n>,<stat>[,<tac>,<ci>,<AcT>]",
+            "responseDescription": "5G network registration status"
+        },
+        {
+            "name": "Cell Info",
+            "command": "AT+GTCCINFO?",
+            "description": "Get current cell information",
+            "category": "Network",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+GTCCINFO: <cell_info>",
+            "responseDescription": "Detailed serving cell information"
+        },
+        {
+            "name": "SMS Format",
+            "command": "AT+CMGF=1",
+            "description": "Set SMS text mode",
+            "category": "SMS",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "OK",
+            "responseDescription": "Set SMS format to text mode"
+        },
+        {
+            "name": "PDP Context",
+            "command": "AT+CGDCONT?",
+            "description": "Query defined PDP contexts",
+            "category": "Data",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CGDCONT: <cid>,<PDP_type>,<APN>",
+            "responseDescription": "List of defined PDP contexts"
+        },
+        {
+            "name": "Temperature",
+            "command": "AT+MTSM",
+            "description": "Query module temperature",
+            "category": "Hardware",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+MTSM: <temp>",
+            "responseDescription": "Current module temperature"
+        },
+        {
+            "name": "USB Mode",
+            "command": "AT+GTUSBMODE?",
+            "description": "Query USB profile settings",
+            "category": "Hardware",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+GTUSBMODE: <mode>",
+            "responseDescription": "Current USB mode configuration"
+        },
+        {
+            "name": "Flight Mode",
+            "command": "AT+GTFMODE?",
+            "description": "Query hardware flight mode status",
+            "category": "Hardware",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+GTFMODE: <status>",
+            "responseDescription": "Flight mode status"
+        },
+        // General Information Commands
+        {
+            "name": "Manufacturer ID",
+            "command": "AT+CGMI",
+            "description": "Request manufacturer identification",
+            "category": "General",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CGMI: <manufacturer>"
+        },
+        {
+            "name": "Model ID (GMM)",
+            "command": "AT+GMM",
+            "description": "Request model identification",
+            "category": "General",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+GMM: <model>"
+        },
+        {
+            "name": "Software Revision",
+            "command": "AT+CGMR",
+            "description": "Request software revision",
+            "category": "General",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CGMR: <revision>"
+        },
+        {
+            "name": "IMEI Query",
+            "command": "AT+CGSN",
+            "description": "Request International Mobile Equipment Identity",
+            "category": "General",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CGSN: <IMEI>"
+        },
+        {
+            "name": "Factory Serial Number",
+            "command": "AT+CFSN",
+            "description": "Request factory serial number",
+            "category": "General",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CFSN: <serial>"
+        },
+        {
+            "name": "IMSI Query",
+            "command": "AT+CIMI",
+            "description": "Request International Mobile Subscriber Identity",
+            "category": "General",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CIMI: <IMSI>"
+        },
+        {
+            "name": "SIM Card ID",
+            "command": "AT+CCID",
+            "description": "Request integrated circuit card identity",
+            "category": "General",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CCID: <ICCID>"
+        },
+        // Module Control Commands
+        {
+            "name": "Module Power Off",
+            "command": "AT+CPWROFF",
+            "description": "Switch off module",
+            "category": "Module Control",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "OK"
+        },
+        {
+            "name": "Module Functionality",
+            "command": "AT+CFUN?",
+            "description": "Query module functionality status",
+            "category": "Module Control",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CFUN: <fun>"
+        },
+        {
+            "name": "Dual SIM Switch",
+            "command": "AT+GTDUALSIM?",
+            "description": "Query dual SIM card switching status",
+            "category": "Module Control",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+GTDUALSIM: <status>"
+        },
+        // Network Commands
+        {
+            "name": "Signal Quality",
+            "command": "AT+CSQ",
+            "description": "Get signal quality report",
+            "category": "Network",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CSQ: <rssi>,<ber>"
+        },
+        {
+            "name": "Extended Signal Quality",
+            "command": "AT+CESQ",
+            "description": "Get extended signal quality report",
+            "category": "Network",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CESQ: <rxlev>,<ber>,<rscp>,<ecno>,<rsrq>,<rsrp>"
+        },
+        {
+            "name": "Network Registration",
+            "command": "AT+CREG?",
+            "description": "Query network registration status",
+            "category": "Network",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CREG: <n>,<stat>[,<lac>,<ci>]"
+        },
+        {
+            "name": "GPRS Registration",
+            "command": "AT+CGREG?",
+            "description": "Query GPRS network registration status",
+            "category": "Network",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CGREG: <n>,<stat>[,<lac>,<ci>]"
+        },
+        {
+            "name": "EPS Registration",
+            "command": "AT+CEREG?",
+            "description": "Query EPS network registration status",
+            "category": "Network",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CEREG: <n>,<stat>[,<tac>,<ci>,<AcT>]"
+        },
+        {
+            "name": "5G Registration",
+            "command": "AT+C5GREG?",
+            "description": "Query 5G network registration status",
+            "category": "Network",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+C5GREG: <n>,<stat>[,<tac>,<ci>,<AcT>]"
+        },
+        {
+            "name": "Operator Selection",
+            "command": "AT+COPS?",
+            "description": "Query current operator selection",
+            "category": "Network",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+COPS: <mode>[,<format>,<oper>]"
+        },
+        {
+            "name": "Radio Access Technology",
+            "command": "AT+GTRAT?",
+            "description": "Query selected Radio Access Technology",
+            "category": "Network",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+GTRAT: <rat>"
+        },
+        {
+            "name": "Cell Information",
+            "command": "AT+GTCCINFO?",
+            "description": "Get current cell information",
+            "category": "Network",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+GTCCINFO: <cell_info>"
+        },
+        {
+            "name": "Cell Lock Info",
+            "command": "AT+GTCELLLOCK?",
+            "description": "Query cell lock information",
+            "category": "Network",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+GTCELLLOCK: <status>"
+        },
+        // Call Control Commands
+        {
+            "name": "Dial",
+            "command": "ATD<number>;",
+            "description": "Dial a voice call",
+            "category": "Call Control",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "OK"
+        },
+        {
+            "name": "Hang Up",
+            "command": "ATH",
+            "description": "Hang up call",
+            "category": "Call Control",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "OK"
+        },
+        {
+            "name": "Answer",
+            "command": "ATA",
+            "description": "Answer incoming call",
+            "category": "Call Control",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "OK"
+        },
+        {
+            "name": "Call Waiting",
+            "command": "AT+CCWA?",
+            "description": "Query call waiting status",
+            "category": "Call Control",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CCWA: <status>"
+        },
+        {
+            "name": "Caller ID",
+            "command": "AT+CLIP?",
+            "description": "Query caller ID presentation status",
+            "category": "Call Control",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CLIP: <status>"
+        },
+        // SMS Commands
+        {
+            "name": "Message Format",
+            "command": "AT+CMGF=1",
+            "description": "Set SMS text mode",
+            "category": "SMS",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "OK"
+        },
+        {
+            "name": "Message Storage",
+            "command": "AT+CPMS?",
+            "description": "Query preferred message storage",
+            "category": "SMS",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CPMS: <mem1>,<used1>,<total1>,<mem2>,<used2>,<total2>,<mem3>,<used3>,<total3>"
+        },
+        {
+            "name": "List Messages",
+            "command": "AT+CMGL=\"ALL\"",
+            "description": "List all SMS messages",
+            "category": "SMS",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CMGL: <index>,<stat>,<oa/da>,[<alpha>],<scts>[,<tooa/toda>,<length>]<CR><LF><data>"
+        },
+        {
+            "name": "Read Message",
+            "command": "AT+CMGR=<index>",
+            "description": "Read SMS message at specified index",
+            "category": "SMS",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CMGR: <stat>,<oa>,[<alpha>],<scts>[,<tooa>,<fo>,<pid>,<dcs>,<sca>,<tosca>,<length>]<CR><LF><data>"
+        },
+        {
+            "name": "Delete Message",
+            "command": "AT+CMGD=<index>",
+            "description": "Delete SMS message at specified index",
+            "category": "SMS",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "OK"
+        },
+        // Data Commands
+        {
+            "name": "PDP Context",
+            "command": "AT+CGDCONT?",
+            "description": "Query PDP context parameters",
+            "category": "Data",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CGDCONT: <cid>,<PDP_type>,<APN>,<PDP_addr>,<d_comp>,<h_comp>[,<IPv4AddrAlloc>[,<emergency_indication>[,<P-CSCF_discovery>[,<IM_CN_Signalling_Flag_Ind>]]]]"
+        },
+        {
+            "name": "Packet Domain Attach",
+            "command": "AT+CGATT?",
+            "description": "Query packet domain attach status",
+            "category": "Data",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CGATT: <state>"
+        },
+        {
+            "name": "PDP Address",
+            "command": "AT+CGPADDR",
+            "description": "Show PDP address",
+            "category": "Data",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CGPADDR: <cid>,<PDP_addr>"
+        },
+        {
+            "name": "DNS Query",
+            "command": "AT+GTDNS?",
+            "description": "Query DNS addresses",
+            "category": "Data",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+GTDNS: <priDNS>,<secDNS>"
+        },
+        // Audio Commands
+        {
+            "name": "Speaker Volume",
+            "command": "AT+CLVL?",
+            "description": "Query loudspeaker volume level",
+            "category": "Audio",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CLVL: <level>"
+        },
+        {
+            "name": "Mute Control",
+            "command": "AT+CMUT?",
+            "description": "Query mute status",
+            "category": "Audio",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CMUT: <n>"
+        },
+        {
+            "name": "Audio Path",
+            "command": "AT+MAPATH?",
+            "description": "Query audio path setting",
+            "category": "Audio",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+MAPATH: <path>"
+        },
+        {
+            "name": "Volume Level",
+            "command": "AT+MAVOL?",
+            "description": "Query volume level",
+            "category": "Audio",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+MAVOL: <level>"
+        },
+        // System Time Commands
+        {
+            "name": "System Time",
+            "command": "AT+CCLK?",
+            "description": "Read system date and time",
+            "category": "System",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CCLK: <time>"
+        },
+        {
+            "name": "Time Zone Update",
+            "command": "AT+CTZU?",
+            "description": "Query automatic time zone update status",
+            "category": "System",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CTZU: <onoff>"
+        },
+        {
+            "name": "Time Zone Report",
+            "command": "AT+CTZR?",
+            "description": "Query time zone reporting status",
+            "category": "System",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CTZR: <onoff>"
+        },
+        // Hardware Commands
+        {
+            "name": "Baud Rate",
+            "command": "AT+IPR?",
+            "description": "Query baud rate",
+            "category": "Hardware",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+IPR: <rate>"
+        },
+        {
+            "name": "Flow Control",
+            "command": "AT+IFC?",
+            "description": "Query flow control settings",
+            "category": "Hardware",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+IFC: <dce_by_dte>,<dte_by_dce>"
+        },
+        {
+            "name": "GPIO Status",
+            "command": "AT+GPIO?",
+            "description": "Query GPIO status",
+            "category": "Hardware",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+GPIO: <pin>,<value>"
+        },
+        {
+            "name": "Battery Status",
+            "command": "AT+CBC",
+            "description": "Query battery status",
+            "category": "Hardware",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CBC: <bcs>,<bcl>,<voltage>"
+        },
+        {
+            "name": "Temperature",
+            "command": "AT+MTSM",
+            "description": "Query temperature sensor",
+            "category": "Hardware",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+MTSM: <temp>"
+        },
+        // Security Commands
+        {
+            "name": "PIN Status",
+            "command": "AT+CPIN?",
+            "description": "Query PIN status",
+            "category": "Security",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CPIN: <code>"
+        },
+        {
+            "name": "PIN Retries",
+            "command": "AT+CPINR?",
+            "description": "Query remaining PIN retries",
+            "category": "Security",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CPINR: <code>,<retries>[,<default_retries>]"
+        },
+        {
+            "name": "Facility Lock",
+            "command": "AT+CLCK?",
+            "description": "Query facility lock status",
+            "category": "Security",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CLCK: <status>"
+        },
+        {
+            "name": "SIM Access",
+            "command": "AT+CSIM?",
+            "description": "Query SIM status",
+            "category": "Security",
+            "manufacturer": "Fibocom",
+            "expectedResponse": "+CSIM: <length>,<command>"
+        }
+    ]
+}

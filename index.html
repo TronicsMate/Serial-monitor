@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Serial Terminal</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
+</head>
+<body>
+    <div class="app-container">
+        <div class="sidebar left-sidebar">
+            <div class="logo">
+                <h1>Serial Terminal</h1>
+            </div>
+            
+            <div class="connection-panel">
+                <div class="settings-header">
+                    <h2>Connection Settings</h2>
+                </div>
+
+                <div class="settings-group">
+                    <label for="baudRate">Baud Rate</label>
+                    <select id="baudRate" class="form-control">
+                        <option value="9600">9600</option>
+                        <option value="19200">19200</option>
+                        <option value="38400">38400</option>
+                        <option value="57600">57600</option>
+                        <option value="115200" selected>115200</option>
+                        <option value="230400">230400</option>
+                        <option value="460800">460800</option>
+                        <option value="921600">921600</option>
+                    </select>
+                </div>
+
+                <div class="settings-group">
+                    <label>Line Ending</label>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="lineEnding" value="\n"> \n
+                        </label>
+                        <label>
+                            <input type="radio" name="lineEnding" value="\r" checked> \r
+                        </label>
+                        <label>
+                            <input type="radio" name="lineEnding" value="\r\n"> \r\n
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="settings-group">
+                    <label>Flow Control</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="dtrControl" checked> DTR
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="rtsControl" checked> RTS
+                        </label>
+                    </div>
+                </div>
+
+                <div class="connection-actions">
+                    <button id="connectBtn" class="btn btn-primary">Connect</button>
+                </div>
+            </div>
+            
+            <div class="terminal-settings connection-panel">
+                <div class="settings-header">
+                    <h2>Terminal</h2>
+                </div>
+                
+                <div class="settings-group">
+                    <label>Display</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="showTimestamp" checked> Show time
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="autoscroll" checked> Auto scroll
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="connection-actions" style="display: flex; justify-content: space-between; margin-top: 10px;">
+                    <button id="clearBtn" class="btn btn-secondary" style="flex: 1; margin-right: 5px;">Clear Terminal</button>
+                    <button id="copyTerminalBtn" class="btn btn-secondary" style="flex: 1; margin-left: 5px;">Copy Terminal</button>
+                </div>
+            </div>
+            
+            <div class="developer-details">
+                <div class="settings-header">
+                    <h2>Developer</h2>
+                </div>
+                <div class="developer-info">
+                    <p>Developed by <strong>Athula Kumara</strong></p>
+                    <a href="https://www.linkedin.com/in/shpakumara/" target="_blank" class="linkedin-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#0077B5">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                        LinkedIn Profile
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main-panel">
+            <div id="terminal" class="terminal">
+                <!-- Terminal output will be displayed here -->
+            </div>
+            
+            <div class="input-area">
+                <input type="text" id="messageInput" class="message-input" placeholder="Type AT command here...">
+                <button id="sendBtn" class="btn btn-send">Send</button>
+            </div>
+        </div>
+
+        <div class="sidebar right-sidebar">
+            <div class="command-library-section connection-panel">
+                <div class="settings-header">
+                    <h2>Commands</h2>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="commandSearch" class="search-input" placeholder="Search commands...">
+                </div>
+                <div id="commandLibrary" class="command-library">
+                    <!-- Command buttons will be generated here -->
+                </div>
+                <button id="addCommandBtn" class="btn btn-secondary" style="width: 100%;">Add Command</button>
+            </div>
+            
+            <div class="at-scripts-section connection-panel">
+                <div class="settings-header">
+                    <h2>AT Scripts</h2>
+                </div>
+                <div class="input-area">
+                    <textarea id="atScriptInput" class="message-input" placeholder="You can run AT scripts here.
+
+Example:
+
+AT;
+delay(2000); //2000 mS delay
+ATI;
+AT+CREG;
+
+If no delay is specified, 1000mS delay is applied." rows="20" style="width: 100%; height: 403px;"></textarea>
+                    
+                </div>
+                <div style="margin-top: 10px; display: flex; align-items: center; gap: 10px;">
+                    <input type="checkbox" id="runLoopCheckbox"> 
+                    <label for="runLoopCheckbox">Run Loop</label>
+                    <button id="sendAtScriptBtn" class="btn btn-secondary">Run Script</button>
+                    <button id="stopScriptBtn" class="btn btn-secondary">Stop Script</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add Command Modal -->
+    <div class="modal" id="addCommandModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add AT Command</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="commandName">Command Name</label>
+                    <input type="text" id="commandName" class="form-control" placeholder="e.g., Check Signal">
+                </div>
+                
+                <div class="form-group">
+                    <label for="commandValue">Command Value</label>
+                    <input type="text" id="commandValue" class="form-control" placeholder="e.g., AT+CSQ">
+                </div>
+                
+                <div class="form-group">
+                    <label for="commandDescription">Description (optional)</label>
+                    <textarea id="commandDescription" class="form-control" placeholder="What does this command do?"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="saveCommandBtn" class="btn btn-primary">Save Command</button>
+                <button id="cancelCommandBtn" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Script Modal -->
+    <div id="scriptModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h2>AT Command Input</h2>
+            <textarea id="atScriptInputModal" class="message-input" placeholder="Type AT commands here..." rows="10"></textarea>
+            <button id="sendAtScriptBtnModal" class="btn btn-send">Send</button>
+        </div>
+    </div>
+    
+    <style>
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+    .close-modal {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close-modal:hover,
+    .close-modal:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    </style>
+    
+    <script src="js/commands.js"></script>
+    <script src="js/serial.js"></script>
+    <script src="js/multiCommandSender.js"></script>
+</body>
+</html>
