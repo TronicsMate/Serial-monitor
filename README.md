@@ -19,11 +19,15 @@ A web-based serial monitor application developed using HTML, CSS, and JavaScript
 Example script format:
 ```plaintext
 AT;
-delay(500);
+delay(1000);
 ATI;
-delay(200);
+delay(2000);
+AT+CPIN?
+//if no delay is defined, 1000mS delay is applied
 AT+COPS?;
-delay(200);
+delay(2000);
+AT+CREG?
+
 ```
 ## How to Use
 
