@@ -468,7 +468,7 @@ class SerialTerminal {
                     console.log(trimmedCommand);
                     this.writeToTerminal(trimmedCommand, 'sent');
                     this.sendMessage(trimmedCommand);
-                    await new Promise(resolve => setTimeout(resolve, 500));
+                    await new Promise(resolve => setTimeout(resolve, 1000));
                 }
             }
             if (runLoop && this.scriptRunning) {
